@@ -11,6 +11,18 @@ permissions:
   contents: read
 
 jobs:
+  lint-html:
+    name: Lint HTML
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run lint:html
+
   lint-js:
     name: Lint JavaScript
     runs-on: ubuntu-latest
@@ -25,7 +37,7 @@ jobs:
 
   unit-tests:
     name: Testes Unitários
-    needs: lint-js
+    needs: [lint-html, lint-js]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
