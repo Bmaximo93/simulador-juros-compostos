@@ -1,0 +1,108 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  background: #f4f6f8;
+  color: #1f2933;
+}
+
+main {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 32px 16px;
+}
+
+h1 {
+  margin-top: 0;
+  font-size: 1.75rem;
+}
+
+form {
+  display: grid;
+  gap: 8px;
+  padding: 24px;
+  background: #fff;
+  border-radius: 8px;
+}
+
+label {
+  margin-top: 8px;
+  font-weight: 600;
+}
+
+input,
+select,
+button {
+  padding: 10px;
+  font: inherit;
+  border: 1px solid #cbd2d9;
+  border-radius: 6px;
+}
+
+.campo-com-unidade {
+  display: flex;
+  gap: 8px;
+}
+
+.campo-com-unidade input {
+  flex: 1;
+}
+
+button {
+  margin-top: 16px;
+  background: #1f6feb;
+  color: #fff;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+#erro {
+  margin-top: 16px;
+  padding: 12px;
+  background: #fde8e8;
+  color: #9b1c1c;
+  border-radius: 6px;
+}
+
+.resumo {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+  margin: 24px 0;
+}
+
+.resumo div {
+  display: grid;
+  gap: 4px;
+  padding: 16px;
+  background: #fff;
+  border-radius: 8px;
+}
+
+.resumo strong {
+  font-size: 1.25rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+th,
+td {
+  padding: 8px 6px;
+  text-align: right;
+  border-bottom: 1px solid #e4e7eb;
+}
+
+th:first-child,
+td:first-child {
+  text-align: left;
+}

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulador de Juros Compostos</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <h1>Simulador de Juros Compostos</h1>
+
+    <form id="formulario" novalidate>
+      <label for="valor-inicial">Valor inicial (R$)</label>
+      <input type="number" id="valor-inicial" min="0" step="0.01" value="1000">
+
+      <label for="aporte-mensal">Aporte mensal (R$)</label>
+      <input type="number" id="aporte-mensal" min="0" step="0.01" value="100">
+
+      <label for="taxa">Taxa de juros (%)</label>
+      <div class="campo-com-unidade">
+        <input type="number" id="taxa" min="0" step="0.01" value="1">
+        <select id="unidade-taxa" aria-label="Período da taxa">
+          <option value="mes">ao mês</option>
+          <option value="ano">ao ano</option>
+        </select>
+      </div>
+
+      <label for="prazo">Prazo</label>
+      <div class="campo-com-unidade">
+        <input type="number" id="prazo" min="1" step="1" value="12">
+        <select id="unidade-prazo" aria-label="Unidade do prazo">
+          <option value="meses">meses</option>
+          <option value="anos">anos</option>
+        </select>
+      </div>
+
+      <button type="submit">Simular</button>
+    </form>
+
+    <p id="erro" role="alert" hidden></p>
+
+    <section id="resultado" hidden>
+      <div class="resumo">
+        <div>
+          <span>Montante final</span>
+          <strong id="montante"></strong>
+        </div>
+        <div>
+          <span>Total investido</span>
+          <strong id="total-investido"></strong>
+        </div>
+        <div>
+          <span>Total em juros</span>
+          <strong id="total-juros"></strong>
+        </div>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Mês</th>
+            <th>Aporte</th>
+            <th>Juros</th>
+            <th>Saldo</th>
+          </tr>
+        </thead>
+        <tbody id="tabela"></tbody>
+      </table>
+    </section>
+  </main>
+
+  <script type="module" src="src/app.js"></script>
+</body>
+</html>
