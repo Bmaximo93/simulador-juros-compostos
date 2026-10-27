@@ -1,6 +1,6 @@
 {
   "name": "simulador-juros-compostos",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Simulador de juros compostos com pipeline CI/CD no GitHub Actions",
   "private": true,
   "license": "MIT",
