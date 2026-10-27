@@ -9,46 +9,12 @@ permissions:
   contents: write
 
 jobs:
-  lint-html:
-    name: Lint HTML
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v7
-      - uses: actions/setup-node@v7
-        with:
-          node-version: '20'
-          cache: 'npm'
-      - run: npm ci
-      - run: npm run lint:html
-
-  lint-js:
-    name: Lint JavaScript
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v7
-      - uses: actions/setup-node@v7
-        with:
-          node-version: '20'
-          cache: 'npm'
-      - run: npm ci
-      - run: npm run lint
-
-  unit-tests:
-    name: Testes Unitários
-    needs: [lint-html, lint-js]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v7
-      - uses: actions/setup-node@v7
-        with:
-          node-version: '20'
-          cache: 'npm'
-      - run: npm ci
-      - run: npm test
+  ci:
+    uses: ./.github/workflows/ci.yml
 
   deploy:
     name: Deploy GitHub Pages
-    needs: unit-tests
+    needs: ci
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
