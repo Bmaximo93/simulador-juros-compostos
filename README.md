@@ -12,7 +12,7 @@ Simulador web que calcula o rendimento de um investimento com valor inicial, apo
 
 ## Pipeline CI/CD
 
-Cada alteração passa por lint, testes unitários, testes de integração e testes E2E antes de ser publicada no GitHub Pages.
+Cada alteração passa por lint de HTML, lint de JavaScript e testes unitários antes de ser publicada no GitHub Pages.
 
 ## Gitflow
 
