@@ -36,6 +36,20 @@ jobs:
       - run: npm ci
       - run: npm run lint
 
+  sast:
+    name: SAST (Semgrep)
+    runs-on: ubuntu-latest
+    container:
+      image: semgrep/semgrep
+    steps:
+      - uses: actions/checkout@v7
+      - run: semgrep scan --config p/javascript --config p/security-audit --error --sarif-output=semgrep.sarif
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: semgrep-report
+          path: semgrep.sarif
+
   unit-tests:
     name: Testes Unitários
     needs: [lint-html, lint-js]
