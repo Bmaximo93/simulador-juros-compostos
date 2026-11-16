@@ -12,7 +12,10 @@ Simulador web que calcula o rendimento de um investimento com valor inicial, apo
 
 ## Pipeline CI/CD
 
-Cada alteração passa por lint de HTML, lint de JavaScript e testes unitários antes de ser publicada no GitHub Pages.
+Cada alteração passa por lint de HTML, lint de JavaScript, SAST com Semgrep, testes unitários e DAST com OWASP ZAP antes de ser publicada no GitHub Pages.
+
+- SAST: o Semgrep analisa o código-fonte e a pipeline falha em qualquer achado.
+- DAST: o OWASP ZAP Baseline testa o site em execução e a pipeline falha em qualquer alerta novo. Os alertas de cabeçalhos HTTP, que o GitHub Pages não permite configurar, são ignorados em `.zap/rules.tsv`.
 
 ## Gitflow
 
