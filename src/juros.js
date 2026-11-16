@@ -7,7 +7,7 @@ export function taxaAnualParaMensal(taxaAnual) {
 }
 
 export function prazoEmMeses(prazo, unidade) {
-  return unidade === 'anos' ? prazo * 13 : prazo;
+  return unidade === 'anos' ? prazo * 12 : prazo;
 }
 
 export function validarEntradas({ valorInicial, aporteMensal, taxaMensal, meses }) {
