@@ -36,6 +36,20 @@ jobs:
       - run: npm ci
       - run: npm run lint
 
+  sast:
+    name: SAST (Semgrep)
+    runs-on: ubuntu-latest
+    container:
+      image: semgrep/semgrep
+    steps:
+      - uses: actions/checkout@v7
+      - run: semgrep scan --config p/javascript --config p/security-audit --error --sarif-output=semgrep.sarif
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: semgrep-report
+          path: semgrep.sarif
+
   unit-tests:
     name: Testes Unitários
     needs: [lint-html, lint-js]
@@ -48,3 +62,21 @@ jobs:
           cache: 'npm'
       - run: npm ci
       - run: npm test
+
+  dast:
+    name: DAST (OWASP ZAP)
+    needs: [sast, unit-tests]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - run: |
+          python3 -m http.server 8080 &
+          sleep 2
+          curl -sf http://localhost:8080 > /dev/null
+      - uses: zaproxy/action-baseline@v0.15.0
+        with:
+          target: http://localhost:8080
+          rules_file_name: .zap/rules.tsv
+          fail_action: true
+          allow_issue_writing: false
+          artifact_name: zap-report
